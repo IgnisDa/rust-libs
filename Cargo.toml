@@ -1,3 +1,6 @@
 [workspace]
 members = ["crates/connection-string-parser"]
 resolver = "2"
+
+[workspace.dependencies]
+clap = { version = "4.0.32", features = ["derive"] }
