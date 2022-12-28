@@ -4,3 +4,10 @@ resolver = "2"
 
 [workspace.dependencies]
 clap = { version = "4.0.32", features = ["derive"] }
+
+[profile.release]
+strip = true      # automatically strip symbols from the binary
+lto = true        # instructs the linker to optimize at the link stage
+opt-level = "z"   # optimize for size
+codegen-units = 1 # allow for maximum size reduction optimizations
+panic = "abort"   # removes the extra unwinding code
