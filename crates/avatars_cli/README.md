@@ -2,8 +2,8 @@
 
 A CLI to generate avatars using the [Avatars](https://crates.io/crates/avatars) crate.
 
-**NOTE**: This is a CLI tool. Instructions to download it can be found on the [main
-README](https://github.com/IgnisDa/rust-libs/blob/main/README.md).
+**NOTE**: This is a CLI tool. The latest binary can be downloaded from
+[here](https://github.com/IgnisDa/rust-libs/releases?q=avatars_cli&expanded=true).
 
 ## Usage
 

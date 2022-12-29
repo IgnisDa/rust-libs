@@ -2,8 +2,8 @@
 
 A simple CLI application to parse connection strings.
 
-**NOTE**: This is a CLI tool. Instructions to download it can be found on the [main
-README](https://github.com/IgnisDa/rust-libs/blob/main/README.md).
+**NOTE**: This is a CLI tool. The latest binary can be downloaded from
+[here](https://github.com/IgnisDa/rust-libs/releases?q=connection-string-parser&expanded=true).
 
 ## Usage
 
