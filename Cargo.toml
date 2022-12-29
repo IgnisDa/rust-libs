@@ -1,7 +1,7 @@
 [workspace]
 members = [
     "crates/avatars",
-    "crates/avatars_cli",
+    "crates/avatars-cli",
     "crates/connection-string-parser",
 ]
 resolver = "2"
