@@ -9,3 +9,4 @@ license-file = "../../LICENSE.txt"
 readme = "README.md"
 
 [dependencies]
+itoa = "1.0.5"
