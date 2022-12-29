@@ -5,7 +5,7 @@ A simple CLI application to parse connection strings.
 ## Usage
 
 ```bash
-$ csp $DATABASE_URL --part scheme
+$ connection-string-parser $DATABASE_URL --part scheme
 postgresql
 ```
 
