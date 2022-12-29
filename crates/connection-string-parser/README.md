@@ -2,7 +2,17 @@
 
 A simple CLI application to parse connection strings.
 
-**NOTE**: This is a CLI tool. The latest binary can be downloaded from
+## Installation
+
+### Using [`eget`](https://github.com/zyedidia/eget)
+
+```bash
+eget IgnisDa/rust-libs --tag connection-string-parser
+```
+
+### Manually
+
+The binaries can be downloaded from
 [here](https://github.com/IgnisDa/rust-libs/releases?q=connection-string-parser&expanded=true).
 
 ## Usage

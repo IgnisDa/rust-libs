@@ -2,7 +2,17 @@
 
 A CLI to generate avatars using the [Avatars](https://crates.io/crates/avatars) crate.
 
-**NOTE**: This is a CLI tool. The latest binary can be downloaded from
+## Installation
+
+### Using [`eget`](https://github.com/zyedidia/eget)
+
+```bash
+eget IgnisDa/rust-libs --tag avatars_cli
+```
+
+### Manually
+
+The binaries can be downloaded from
 [here](https://github.com/IgnisDa/rust-libs/releases?q=avatars_cli&expanded=true).
 
 ## Usage
