@@ -1,6 +1,6 @@
 use itoa::Buffer;
 
-mod components;
+pub mod components;
 
 #[derive(Debug)]
 struct Lcg {
@@ -279,6 +279,60 @@ pub fn male_avatar(seed: u64, mood: Mood) -> String {
     svg.trim().to_string()
 }
 
+pub fn female_avatar(seed: u64, mood: Mood) -> String {
+    let mut g = linear_congruential_generator(seed);
+    let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
+    let hair_color =
+        to_rgb(&g.pick_one(&components::HAIR_COLORS)).brighter_or_darker_than(&skin_color, 17.0);
+    let eyes_color = to_rgb(&g.pick_one(&components::EYE_COLORS));
+    let eyebrows_color = hair_color
+        .darker_than(&skin_color, 7.0)
+        .darker_than(&hair_color, 10.0);
+    let accessories_colors = to_rgb(&g.pick_one(&components::female::ACCESSORIES_COLORS));
+    let mouth_color = to_rgb(&g.pick_one(&components::female::MOUTH_COLORS))
+        .brighter_or_darker_than(&skin_color, 10.0);
+    let glasses_color = to_rgb(&g.pick_one(&components::GLASSES_COLORS));
+    let clothes_color = to_rgb(&g.pick_one(&components::female::CLOTHES_COLORS));
+    let hat_color = to_rgb(&g.pick_one(&components::female::HAT_COLORS));
+
+    let mouth = match mood {
+        Mood::Sad => components::female::mouths::SAD,
+        Mood::Happy => components::female::mouths::HAPPY,
+        Mood::Surprised => components::female::mouths::SURPRISED,
+    };
+
+    let _accessories = &g.pick_one(&components::female::ACCESSORIES);
+    let _glasses = &g.pick_one(&components::female::GLASSES);
+    let _hat = &g.pick_one(&components::HAT);
+
+    let mut svg = [
+        components::SVG_START,
+        components::female::HEAD,
+        &g.pick_one(&components::EYES),
+        &g.pick_one(&components::EYEBROWS),
+        &g.pick_a_or_b(0.15, _accessories, ""),
+        mouth,
+        &g.pick_a_or_b(0.25, _glasses, ""),
+        &g.pick_one(&components::female::CLOTHES),
+        &g.pick_one(&components::female::HAIR),
+        &g.pick_a_or_b(0.05, _hat, ""),
+        components::SVG_END,
+    ]
+    .join("");
+
+    svg = svg.replace("${skinColor}", &skin_color.html());
+    svg = svg.replace("${hairColor}", &hair_color.html());
+    svg = svg.replace("${eyesColor}", &eyes_color.html());
+    svg = svg.replace("${eyebrowsColor}", &eyebrows_color.html());
+    svg = svg.replace("${accessoriesColor}", &accessories_colors.html());
+    svg = svg.replace("${mouthColor}", &mouth_color.html());
+    svg = svg.replace("${glassesColor}", &glasses_color.html());
+    svg = svg.replace("${clothesColor}", &clothes_color.html());
+    svg = svg.replace("${hatColor}", &hat_color.html());
+
+    svg.trim().to_string()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -327,6 +381,34 @@ mod tests {
     fn male_output_ends_with_svg() {
         let seed = generate_seed("test-male");
         let output = male_avatar(seed, Mood::Sad);
+        assert!(output.ends_with("</svg>"));
+    }
+
+    /* FEMALE tests */
+
+    #[test]
+    fn female_being_generated() {
+        female_avatar(100000, Mood::Happy);
+    }
+
+    #[test]
+    fn female_output_trimmed() {
+        let seed = generate_seed("test-male");
+        let output = female_avatar(seed, Mood::Sad);
+        assert!(!output.starts_with('\n'));
+    }
+
+    #[test]
+    fn female_output_starts_with_svg() {
+        let seed = generate_seed("test-male");
+        let output = female_avatar(seed, Mood::Sad);
+        assert!(output.starts_with("<svg"));
+    }
+
+    #[test]
+    fn female_output_ends_with_svg() {
+        let seed = generate_seed("test-female");
+        let output = female_avatar(seed, Mood::Sad);
         assert!(output.ends_with("</svg>"));
     }
 }

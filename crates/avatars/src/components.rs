@@ -3,6 +3,99 @@ pub static SVG_START: &str = "
 
 pub static SVG_END: &str = "</svg>";
 
+pub mod female {
+    pub static HEAD: &str = "<path d='M3 20v-3h1v-1h4v-2H6v-1H5v-1H4v-1H3V9H2V7h1V4h1V3h1V2h10v1h1v1h1v3h1v2h-1v2h-1v1h-1v1h-1v1h-2v2h4v1h1v3H3z' fill='${skinColor}'/><path d='M14 14v-1h1v-1h1v-1h1V9h1V7h-1V4h-1V3h-1V2H5v1H4v1H3v3H2v2h1v2h1v1h1v1h1v1h8z' fill='#FFF' fill-opacity='.1'/>";
+
+    pub static ACCESSORIES_COLORS: [&str; 6] = [
+        "#daa520", "#ffd700", "#eee8aa", "#fafad2", "#d3d3d3", "#a9a9a9",
+    ];
+
+    pub static MOUTH_COLORS: [&str; 6] = [
+        "#dbac98", "#d29985", "#c98276", "#e35d6a", "#e32153", "#de0f0d",
+    ];
+
+    pub static CLOTHES_COLORS: [&str; 13] = [
+        "#d11141", "#00b159", "#00aedb", "#f37735", "#ffc425", "#740001", "#ae0001", "#eeba30",
+        "#96ceb4", "#ffeead", "#ff6f69", "#ffcc5c", "#88d8b0",
+    ];
+
+    pub static HAT_COLORS: [&str; 5] = ["#cc6192", "#2663a3", "#a62116", "#3d8a6b", "#614f8a"];
+
+    pub static ACCESSORIES: [&str; 4] = [
+"<path d='M2 9v1h1V9H2zm15 0v1h1V9h-1z' fill-rule='evenodd' fill='${accessoriesColor}'/>",
+"<path d='M2 9v2h1V9H2zm15 0h1v2h-1V9z' fill-rule='evenodd' fill='${accessoriesColor}'/>",
+"<path d='M2 9v2h1V9H2zm15 0h1v2h-1V9z' fill='${accessoriesColor}'/><path d='M2 9v1h1V9H2zm15 0h1v1h-1V9z' fill='#FFF' fill-opacity='.4'/>",
+"<path d='M1 9v3h3V9H1zm1 1v1h1v-1H2zm14-1v3h3V9h-3zm1 1v1h1v-1h-1z' fill-rule='evenodd' fill='${accessoriesColor}'/>",
+    ];
+
+    pub static GLASSES: [&str; 7] = [
+"<path d='M3 8V7h1V6h2v1h1V6h2v1h2V6h2v1h1V6h2v1h1v1h-1v1h-1v1h-1v1h-1v-1h-1V9h-1V8H9v1H8v1H7v1H6v-1H5V9H4V8H3z' fill='${glassesColor}'/><path d='M3 7v1h1V7h1V6H4v1H3zm5-1v1h1v1h2V7h1V6h-1v1H9V6H8zm7 0v1h1v1h1V7h-1V6h-1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M5 7h3v3H5V7zm7 0h3v3h-3V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M7 7h1v1H7V7zm7 0h1v1h-1V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M12 10V7h3v3h-3zm-1-4v1H9V6H4v1H3v1h1v3h5V8h2v3h5V8h1V7h-1V6h-5zm-6 4V7h3v3H5z' fill-rule='evenodd' fill='${glassesColor}'/><path d='M3 7h1v1H3V7zm6 0h2v1H9V7zm7 0h1v1h-1V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M5 7h3v2H5V7zm7 0h3v2h-3V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M7 7h1v1H7V7zm7 0h1v1h-1V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M5 7v2h3V7H5zM4 6v1H3v1h1v1h1v1h3V9h1V8h2v1h1v1h3V9h1V8h1V7h-1V6h-5v1H9V6H4zm8 1v2h3V7h-3z' fill-rule='evenodd' fill='${glassesColor}'/><path d='M3 7h1v1H3V7zm6 0h2v1H9V7zm7 0h1v1h-1V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M5 8h3v1H5V8zm7 0h3v1h-3V8z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M7 8h1v1H7V8zm7 0h1v1h-1V8z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M5 8v1h3V8H5zM3 7v1h1v1h1v1h3V9h1V8h2v1h1v1h3V9h1V8h1V7H3zm9 1v1h3V8h-3z' fill-rule='evenodd' fill='${glassesColor}'/><path d='M3 7v1h1V7H3zm6 0v1h2V7H9zm7 0v1h1V7h-1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M5 7h3v2H5V7zm7 0h3v2h-3V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M7 7h1v1H7V7zm7 0h1v1h-1V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M12 7v2h3V7h-3zM8 6H5v1H3v1h1v1h1v1h3V9h1V8h2v1h1v1h3V9h1V8h1V7h-2V6h-3v1H8V6zM5 7v2h3V7H5z' fill-rule='evenodd' fill='${glassesColor}'/><path d='M3 7h1v1H3V7zm6 0h2v1H9V7zm7 0h1v1h-1V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M4 8H3V7h1V6h5v1h2V6h5v1h1v1h-1v2h-5V8H9v2H4V8zm1 0V7h3v2H5V8zm7-1v2h3V7h-3z' fill-rule='evenodd' fill='${glassesColor}'/><path d='M5 7h3v2H5V7zm7 0h3v2h-3V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M14 7h1v1h-1V7zM7 7h1v1H7V7z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M3 8V7h1v1H3zm6-1v1h2V7H9zm7 0v1h1V7h-1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M4 8H3V7h14v1h-1v2h-5V8H9v2H4V8zm1 0h3v1H5V8zm7 0h3v1h-3V8z' fill-rule='evenodd' fill='${glassesColor}'/><path d='M5 8h3v1H5V8zm7 0h3v1h-3V8z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M7 8v1h1V8H7zm7 0v1h1V8h-1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M3 7v1h1V7H3zm13 0v1h1V7h-1zM9 7v1h2V7H9z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+    ];
+
+    pub static CLOTHES: [&str; 13] = [
+"<path d='M3 20v-3h1v-1h12v1h1v3H3z' fill='${clothesColor}'/>",
+"<path d='M4 16v4h4v-1H7v-1H6v-1H5v-1H4zm12 0v4h-4v-1h1v-1h1v-1h1v-1h1z' fill-rule='evenodd' fill='${clothesColor}'/>",
+"<path d='M5 16h1v2h1v1h1v1H5v-4zm9 0h1v4h-3v-1h1v-1h1v-2z' fill-rule='evenodd' fill='${clothesColor}'/>",
+"<path d='M4 20v-2h1v-1h1v-1h2v1h1v1h2v-1h1v-1h2v1h1v1h1v2H4z' fill='${clothesColor}'/>",
+"<path d='M3 20v-3h1v-1h4v1h1v1h2v-1h1v-1h4v1h1v3H3z' fill='${clothesColor}'/><path d='M3 20v-3h1v-1h2v1h1v1h1v1h4v-1h1v-1h1v-1h2v1h1v3H3z' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M3 20v-3h1v-1h5v1h2v-1h5v1h1v3H3z' fill='${clothesColor}'/><path d='M3 20v-2h1v1h3v1H3zm14 0v-2h-1v1h-3v1h4z' fill-rule='evenodd' fill='#FFF' fill-opacity='.4'/><path d='M7 16H4v1H3v1h1v1h3v1h6v-1h3v-1h1v-1h-1v-1h-3v1H7v-1z' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M3 20v-3h1v-1h4v1h4v-1h4v1h1v3H3z' fill='${clothesColor}'/><path d='M15 20h2v-3h-1v-1h-4v1H8v-1H4v1H3v3h2v-2h10v2z' fill='#FFF' fill-opacity='.4'/>",
+"<path d='M3 20v-3h1v-1h4v1h1v1h2v-1h1v-1h4v1h1v3H3z' fill='${clothesColor}'/><path d='M6 16v1h1v1h1v1h4v-1h1v-1h1v-1h-2v1h-1v1H9v-1H8v-1H6z' fill='#FFF' fill-opacity='.4'/><path d='M13 20v-1h2v1h-2zm1-4v1h2v-1h-2zm-8 0H4v1h2v-1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+"<path d='M3 20v-3h1v-1h3v1h1v1h1v1h2v-1h1v-1h1v-1h3v1h1v3H3z' fill='${clothesColor}'/>",
+"<path d='M3 20v-3h1v-1h2v1h1v1h1v1h1v1H3zm14 0v-3h-1v-1h-2v1h-1v1h-1v1h-1v1h6z' fill-rule='evenodd' fill='${clothesColor}'/>",
+"<path d='M4 16v4h4v-1H7v-1H6v-2H4zM16 20v-4h-2v2h-1v1h-1v1h4z' fill='${clothesColor}'/>",
+"<path d='M3 20v-3h1v-1h3v1h1v1h1v1h2v-1h1v-1h1v-1h3v1h1v3H3z' fill='${clothesColor}'/><path d='M6 16v1h1v1h1v1h1v1h2v-1h1v-1h1v-1h1v-1h-1v1h-1v1h-1v1H9v-1H8v-1H7v-1H6z' fill='#FFF' fill-opacity='.4'/><path d='M15 16v1h-1v1h-1v1h-1v1h-1v-1h1v-1h1v-1h1v-1h1zM5 16v1h1v1h1v1h1v1h1v-1H8v-1H7v-1H6v-1H5z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/><path d='M3 20h1v-3h1v1h1v1h1v1h1v-1H7v-1H6v-1H5v-1H4v1H3v3zm14 0v-3h-1v-1h-1v1h-1v1h-1v1h-1v1h1v-1h1v-1h1v-1h1v3h1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.1'/>",
+"<path d='M3 20v-3h1v-1h5v1h2v-1h5v1h1v3H3z' fill='${clothesColor}'/><path d='M3 17h14v1H3v-1zm0 2v1h14v-1H3z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
+    ];
+
+    pub static HAIR: [&str; 13] = [
+"<path d='M2 9v6h2v-4H3V9H2zm0-2h2V4h12v3h2V3h-1V2H3v1H2v4zm15 2h1v6h-2v-4h1V9z' fill-rule='evenodd' fill='${hairColor}'/>",
+"<path d='M4 12h1v1H3V4h1V3h1V2h10v1h1v1h1v9h-2v-1h1V5H4v7z' fill='${hairColor}'/>",
+"<path d='M2 17h2v-1h4v-2H6v-1H5v-1H4V4h1V3h1v1h1V3h1v1h1V3h6v1h1v8h-1v1h-1v1h-2v2h4v1h2V3h-1V2h-1V1H4v1H3v1H2v14z' fill='${hairColor}'/>",
+"<path d='M2 13V9h1v2h1v1h1v1H2zm15-4h1v4h-3v-1h1v-1h1V9zM2 7h1V4h1V3h1V2h10v1h1v1h1v3h1V3h-1V2h-1V1H4v1H3v1H2v4z' fill-rule='evenodd' fill='${hairColor}'/>",
+"<path d='M2 14h2V4h12v10h2V3h-1V2h-1V1H4v1H3v1H2v11z' fill='${hairColor}'/>",
+"<path d='M2 14h2V7h1V6h1V5h1V4h1V3h6v1h1v1h1v9h2V3h-1V2h-1V1H4v1H3v1H2v11z' fill='${hairColor}'/>",
+"<path d='M3 4v3h1V4h2v1h1V4h1v1h1V4h7v3h1V4h1V2h-1V1h-2v1H5V1H3v1H2v2h1z' fill='${hairColor}'/>",
+"<path d='M2 10h1V8h1V7h1V6h1V5h1V4h7v1h3V4h-1V3h-1V2H4v1H3v1H2v6z' fill='${hairColor}'/>",
+"<path d='M1 17h3v-1h4v-2H6v-1H5v-1H4v-1H3V9H2V7h1V5h1V4h7V3h1v1h1V3h1v1h1V3h1v2h1v2h1v2h-1v2h-1v1h-1v1h-1v1h-2v2h4v1h3V4h-1V3h-1V2h-1V1H4v1H3v1H2v1H1v13z' fill='${hairColor}'/>",
+"<path d='M2 13h3v-1H4v-1H3V9H2v4zm13 0h3V9h-1v2h-1v1h-1v1zm2-6h1V3h-1V2h-1V1H4v1H3v1H2v4h1V5h1V4h1V3h1V2h8v1h1v1h1v1h1v2z' fill-rule='evenodd' fill='${hairColor}'/>",
+"<path d='M2 9v3h1v1H2v2H1v1h1v-1h1v-1h1v-1h1v-1H4v-1H3V9H2zm0-2h1V6h1V5h2V4h9v1h1v1h1v1h1V3h-1V2h-1V1H4v1H3v1H2v4z' fill-rule='evenodd' fill='${hairColor}'/>",
+"<path d='M1 15h5v-2H5v-1H4v-1H3V6h2V5h2V4h1V3h6v1h1v1h1v1h1v5h-1v1h-1v1h-1v2h5V4h-1V3h-1V2h-1V1H4v1H3v1H2v1H1v11z' fill='${hairColor}'/>",
+"<path d='M2 9v3h1v1H2v2H1v1h1v-1h1v-1h1v-1h1v-1H4v-1H3V9H2zm16 0v3h-1v1h1v2h1v1h-1v-1h-1v-1h-1v-1h-1v-1h1v-1h1V9h1zm-1-2h1V3h-1V2h-1V1H4v1H3v1H2v4h1V6h1V5h2V4h9v1h1v1h1v1z' fill-rule='evenodd' fill='${hairColor}'/>",
+    ];
+
+    pub mod mouths {
+        pub static SAD: &str = "
+<path d='M9 11v1H8v1h4v-1h-1v-1H9z' fill='${mouthColor}'/>
+<path d='M11 11v1H9v1H8v-1h1v-1h2z' fill='${mouthColor}'/>
+<path d='M9 12h2v1H9v-1z' fill='${mouthColor}'/>
+<path d='M9 12v1h1v1h1v-2H9z' fill='${mouthColor}'/>";
+
+        pub static HAPPY: &str = "
+<path d='M9 11v2h2v-1h-1v-1H9z' fill='${mouthColor}'/>
+<path d='M11 13v-1h-1v-1H9v1h1v1h1z' fill='#FFF' fill-opacity='.2'/>
+<path d='M10 11v1H9v1h2v-2h-1z' fill='${mouthColor}'/>
+<path d='M8 11v1h1v1h2v-1h1v-1H8z' fill='${mouthColor}'/>
+<path d='M9 12v1h2v-1h1v-1h-1v1H9z' fill='${mouthColor}'/>
+<path d='M8 11v1h1v1h2v-1H9v-1H8z' fill='${mouthColor}'/>
+<path d='M8 12v1h1v1h2v-1h1v-1h-1v-1H9v1H8z' fill='${mouthColor}'/>
+<path d='M9 12v1h2v-1H9z' fill='#FFF'/>
+<path d='M8 12v1h1v1h2v-1h1v-1h-1v-1H9v1H8z' fill='${mouthColor}'/>
+<path d='M9 12v1h2v-1H9z' fill='#FFF' fill-opacity='.2'/>
+";
+
+        pub static SURPRISED: &str = "
+<path d='M9 12v1h1v-1H9z' fill='${mouthColor}'/>
+<path d='M9 11v2h2v-2H9z' fill='${mouthColor}'/>
+";
+    }
+}
 pub mod male {
     pub static MOUTH_COLORS: [&str; 3] = ["#eec1ad", "#dbac98", "#d29985"];
 
