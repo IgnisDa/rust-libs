@@ -69,3 +69,15 @@ fn parses_correct_name() {
         .unwrap()
         .contains("database_name"));
 }
+
+#[test]
+#[should_panic]
+fn non_existent_part_should_raise_error() {
+    create_cmd(vec![
+        "--part",
+        "password",
+        "edgedb://hostname.com:1234?port=5678",
+    ])
+    .run()
+    .unwrap();
+}
