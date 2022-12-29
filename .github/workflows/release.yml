@@ -25,7 +25,37 @@ defaults:
     shell: bash
 
 jobs:
+  determine-release:
+    if: github.repository_owner == 'IgnisDa'
+    runs-on: ubuntu-20.04
+    outputs:
+      PROJECT_NAME: ${{ steps.project-name.PROJECT_NAME }}
+      TAG: ${{ steps.get-tag.outputs.TAG }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Get project name from github ref
+        id: project-name
+        run: echo PROJECT_NAME="${{ github.event.inputs.project }}" >> $GITHUB_OUTPUT
+
+      - uses: ./.github/actions/setup-dasel
+        name: Setup dasel
+
+      - name: Get tag
+        id: get-tag
+        run: |
+          version=$(dasel --file crates/${{ steps.project-name.PROJECT_NAME }}/Cargo.toml '.package.version')
+          echo "TAG=v$version" >> $GITHUB_OUTPUT
+
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ steps.get-tag.outputs.TAG }}
+          force_push_tag: true
+
   create-release:
+    needs: determine-release
     if: github.repository_owner == 'IgnisDa'
     runs-on: ubuntu-20.04
     steps:
@@ -53,6 +83,7 @@ jobs:
     name: ${{ matrix.target }}
     if: github.repository_owner == 'IgnisDa'
     needs:
+      - determine-release
       - create-release
     strategy:
       matrix:
@@ -85,5 +116,6 @@ jobs:
           target: ${{ matrix.target }}
           tar: all
           zip: windows
+          tag: ${{ needs.determine-release.outputs.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
