@@ -5,7 +5,7 @@ version = "0.3.3"
 edition = "2021"
 authors = ["IgnisDa <ignisda2001@gmail.com>"]
 repository = "https://github.com/IgnisDa/rust-libs"
-license = "../../LICENSE.txt"
+license = "MIT"
 readme = "README.md"
 
 [dependencies]
