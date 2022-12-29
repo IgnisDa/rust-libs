@@ -28,4 +28,8 @@ pub struct Cli {
     /// The part of the connection string to extract
     #[arg(short, long, required = true)]
     pub part: Part,
+
+    /// Fail silently even if the part is not found
+    #[arg(short, long, default_value = "false")]
+    pub fail_silently: bool,
 }

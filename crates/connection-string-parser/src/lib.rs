@@ -4,7 +4,7 @@ use cli::Part;
 use color_eyre::{eyre::eyre, Result};
 use url::Url;
 
-pub fn run_command(url: String, part: Part) -> Result<String> {
+pub fn run_command(url: String, part: Part, fail_silently: bool) -> Result<String> {
     let parsed = Url::parse(&url)?;
     let resp = match part {
         Part::Scheme => Some(parsed.scheme().to_string()),
@@ -18,6 +18,8 @@ pub fn run_command(url: String, part: Part) -> Result<String> {
     };
     if let Some(resp) = resp {
         Ok(resp)
+    } else if fail_silently {
+        Ok(String::new())
     } else {
         Err(eyre!("No value found for part {:?}", part))
     }
