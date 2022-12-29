@@ -94,3 +94,11 @@ fn fails_silently() {
     .unwrap();
     assert_eq!(String::from_utf8(output.stdout).unwrap().trim(), "");
 }
+
+#[test]
+fn check_no_newline() {
+    let output = create_cmd(vec!["--part", "scheme", CONNECTION_STRING])
+        .run()
+        .unwrap();
+    assert!(!String::from_utf8(output.stdout).unwrap().ends_with('\n'));
+}
