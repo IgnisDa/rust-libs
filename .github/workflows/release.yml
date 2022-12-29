@@ -92,6 +92,10 @@ jobs:
           toolchain: stable
       - run: echo "RUSTFLAGS=${RUSTFLAGS} -C target-feature=+crt-static" >> "${GITHUB_ENV}"
         if: endsWith(matrix.target, 'windows-msvc')
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: refs/tags/${{ needs.determine-release.outputs.TAG }}
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: ${{ github.event.inputs.project }}
