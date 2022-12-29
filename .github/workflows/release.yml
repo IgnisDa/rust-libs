@@ -1,3 +1,5 @@
+# This action is responsible for releasing only the CLI crates to crates.io and GitHub
+# releases.
 name: Release
 
 permissions:
