@@ -6,6 +6,6 @@ fn main() -> Result<()> {
     color_eyre::install()?;
     let cli = Cli::parse();
     let resp = run_command(cli.url, cli.part, cli.fail_silently)?;
-    println!("{resp}");
+    print!("{resp}");
     Ok(())
 }
