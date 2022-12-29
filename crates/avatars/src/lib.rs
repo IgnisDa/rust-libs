@@ -207,17 +207,6 @@ pub enum Mood {
     Surprised,
 }
 
-pub fn random_mood() -> Mood {
-    let mut g = linear_congruential_generator(0);
-    let mood_str = g.pick_one(&["sad", "happy", "surprised"]);
-    match mood_str.as_str() {
-        "sad" => Mood::Sad,
-        "happy" => Mood::Happy,
-        "surprised" => Mood::Surprised,
-        _ => Mood::Happy,
-    }
-}
-
 pub fn male_avatar(seed: u64, mood: Mood) -> String {
     let mut g = linear_congruential_generator(seed);
     let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
