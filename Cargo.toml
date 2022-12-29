@@ -1,5 +1,9 @@
 [workspace]
-members = ["crates/avatars", "crates/connection-string-parser"]
+members = [
+    "crates/avatars",
+    "crates/avatars_cli",
+    "crates/connection-string-parser",
+]
 resolver = "2"
 
 [workspace.dependencies]

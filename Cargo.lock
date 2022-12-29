@@ -22,6 +22,10 @@ name = "avatars"
 version = "0.1.0"
 
 [[package]]
+name = "avatars_cli"
+version = "0.1.0"
+
+[[package]]
 name = "backtrace"
 version = "0.3.67"
 source = "registry+https://github.com/rust-lang/crates.io-index"
