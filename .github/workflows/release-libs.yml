@@ -1,5 +1,5 @@
 # This action is responsible for releasing only the library crates to crates.io.
-name: Release
+name: Release libraries
 
 permissions:
   contents: write
