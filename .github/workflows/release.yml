@@ -46,7 +46,7 @@ jobs:
           tag: ${{ steps.get-tag.outputs.TAG }}
           force_push_tag: true
 
-  create-release:
+  publish-to-crates-io:
     needs: determine-release
     if: github.repository_owner == 'IgnisDa'
     runs-on: ubuntu-20.04
@@ -59,8 +59,7 @@ jobs:
         with:
           toolchain: stable
           override: true
-      - run: cargo package
-      - run: cargo publish --package "${{ github.event.inputs.project }}"
+      - run: cargo publish --package "${{ github.event.inputs.project }}" --locked
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 
@@ -69,7 +68,7 @@ jobs:
     if: github.repository_owner == 'IgnisDa'
     needs:
       - determine-release
-      - create-release
+      - publish-to-crates-io
     strategy:
       matrix:
         include:
@@ -101,6 +100,6 @@ jobs:
           target: ${{ matrix.target }}
           tar: all
           zip: windows
-          ref: ${{ needs.determine-release.outputs.TAG }}
+          ref: refs/tags/${{ needs.determine-release.outputs.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
