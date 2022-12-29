@@ -9,7 +9,3 @@ license-file = "../../LICENSE.txt"
 readme = "README.md"
 
 [dependencies]
-
-[[bin]]
-name = "avatars"
-path = "src/main.rs"
