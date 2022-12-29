@@ -46,7 +46,7 @@ jobs:
       - name: Get tag
         id: get-tag
         run: |
-          version=$(dasel --file crates/${{ steps.project-name.PROJECT_NAME }}/Cargo.toml '.package.version')
+          version=$(dasel --file crates/${{ steps.project-name.outputs.PROJECT_NAME }}/Cargo.toml '.package.version')
           echo "TAG=v$version" >> $GITHUB_OUTPUT
 
       - uses: rickstaa/action-create-tag@v1
