@@ -1,7 +1,7 @@
 [package]
 name = "avatars_cli"
 description = "A command line interface for generating avatars"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["IgnisDa <ignisda2001@gmail.com>"]
 repository = "https://github.com/IgnisDa/rust-libs"

@@ -11,6 +11,7 @@ on:
         description: Which project to build and publish
         options:
           - connection-string-parser
+          - avatars_cli
 
 env:
   CARGO_INCREMENTAL: 0
