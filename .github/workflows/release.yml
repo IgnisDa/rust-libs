@@ -40,7 +40,7 @@ jobs:
         id: get-tag
         run: |
           version=$(dasel --file crates/${{ github.event.inputs.project }}/Cargo.toml '.package.version')
-          echo "TAG=${{ github.event.inputs.project }}-v$version" >> $GITHUB_OUTPUT
+          echo "TAG=v$version+${{ github.event.inputs.project }}" >> $GITHUB_OUTPUT
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ steps.get-tag.outputs.TAG }}
