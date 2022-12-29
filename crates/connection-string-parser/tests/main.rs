@@ -76,8 +76,21 @@ fn non_existent_part_should_raise_error() {
     create_cmd(vec![
         "--part",
         "password",
-        "edgedb://hostname.com:1234?port=5678",
+        "db://hostname.com:1234?port=5678",
     ])
     .run()
     .unwrap();
+}
+
+#[test]
+fn fails_silently() {
+    let output = create_cmd(vec![
+        "--part",
+        "password",
+        "db://hostname.com:1234?port=5678",
+        "--fail-silently",
+    ])
+    .run()
+    .unwrap();
+    assert_eq!(String::from_utf8(output.stdout).unwrap().trim(), "");
 }
