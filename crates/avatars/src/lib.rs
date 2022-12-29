@@ -1,6 +1,6 @@
 use itoa::Buffer;
 
-mod parts;
+mod components;
 
 struct Lcg {
     seed: u64,
@@ -251,28 +251,28 @@ pub fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
     let mood = mood.unwrap();
 
     let mouth = match mood {
-        Mood::Sad => parts::male::mouths::SAD,
-        Mood::Happy => parts::male::mouths::HAPPY,
-        Mood::Surprised => parts::male::mouths::SURPRISED,
+        Mood::Sad => components::male::mouths::SAD,
+        Mood::Happy => components::male::mouths::HAPPY,
+        Mood::Surprised => components::male::mouths::SURPRISED,
     };
 
-    let _mustache = &g.pick_one(&parts::male::MUSTACHE);
-    let _glasses = &g.pick_one(&parts::male::GLASSES);
-    let _hair = &g.pick_one(&parts::male::HAIR);
-    let _hat = &g.pick_one(&parts::HAT);
+    let _mustache = &g.pick_one(&components::male::MUSTACHE);
+    let _glasses = &g.pick_one(&components::male::GLASSES);
+    let _hair = &g.pick_one(&components::male::HAIR);
+    let _hat = &g.pick_one(&components::HAT);
 
     let mut svg = [
-        parts::SVG_START,
-        parts::male::HEAD,
-        &g.pick_one(&parts::EYES),
-        &g.pick_one(&parts::EYEBROWS),
+        components::SVG_START,
+        components::male::HEAD,
+        &g.pick_one(&components::EYES),
+        &g.pick_one(&components::EYEBROWS),
         &g.pick_a_or_b(0.5, _mustache, ""),
         mouth,
         &g.pick_a_or_b(0.25, _glasses, ""),
-        &g.pick_one(&parts::male::CLOTHES),
+        &g.pick_one(&components::male::CLOTHES),
         &g.pick_a_or_b(0.95, _hair, ""),
         &g.pick_a_or_b(0.05, _hat, ""),
-        parts::SVG_END,
+        components::SVG_END,
     ]
     .join("");
 
