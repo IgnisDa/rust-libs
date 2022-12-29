@@ -1,7 +1,7 @@
 use duct::{cmd, Expression};
 
 pub fn create_cmd(args: Vec<&str>) -> Expression {
-    let bin_path = env!("CARGO_BIN_EXE_csp");
+    let bin_path = env!("CARGO_BIN_EXE_connection-string-parser");
     cmd(bin_path, args).stderr_to_stdout().stdout_capture()
 }
 
