@@ -103,6 +103,6 @@ jobs:
           tar: all
           zip: windows
           ref: refs/tags/${{ needs.determine-release.outputs.TAG }}
-          checksum: sha256,sha512,sha1,md5
+          checksum: sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
