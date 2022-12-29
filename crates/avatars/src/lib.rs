@@ -276,7 +276,7 @@ pub fn male_avatar(seed: u64, mood: Mood) -> String {
     svg = svg.replace("${clothesColor}", &clothes_color.html());
     svg = svg.replace("${hatColor}", &hat_color.html());
 
-    svg
+    svg.trim().to_string()
 }
 
 #[cfg(test)]
@@ -291,19 +291,42 @@ mod tests {
     }
 
     #[test]
+    fn generated_with_input_seed() {
+        let seed = generate_seed("test-male");
+        male_avatar(seed, Mood::Sad);
+    }
+
+    #[test]
+    fn generated_with_input_seed_and_mood() {
+        let seed = generate_seed("test-male");
+        male_avatar(seed, Mood::Sad);
+    }
+
+    /* MALE tests */
+
+    #[test]
     fn male_being_generated() {
         male_avatar(100000, Mood::Happy);
     }
 
     #[test]
-    fn male_being_generated_with_input_seed() {
+    fn male_output_trimmed() {
         let seed = generate_seed("test-male");
-        male_avatar(seed, Mood::Sad);
+        let output = male_avatar(seed, Mood::Sad);
+        assert!(!output.starts_with('\n'));
     }
 
     #[test]
-    fn male_being_generated_with_input_seed_and_mood() {
+    fn male_output_starts_with_svg() {
         let seed = generate_seed("test-male");
-        male_avatar(seed, Mood::Sad);
+        let output = male_avatar(seed, Mood::Sad);
+        assert!(output.starts_with("<svg"));
+    }
+
+    #[test]
+    fn male_output_ends_with_svg() {
+        let seed = generate_seed("test-male");
+        let output = male_avatar(seed, Mood::Sad);
+        assert!(output.ends_with("</svg>"));
     }
 }
