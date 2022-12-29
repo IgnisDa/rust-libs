@@ -8,6 +8,8 @@ resolver = "2"
 
 [workspace.dependencies]
 clap = { version = "4.0.32", features = ["derive"] }
+color-eyre = { version = "0.6.2", default-features = false }
+duct = "0.13.6"
 
 [profile.release]
 strip = true
