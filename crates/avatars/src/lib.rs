@@ -204,7 +204,7 @@ pub enum Mood {
     Surprised,
 }
 
-fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
+pub fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
     let mut mood = mood;
 
     let mut g = linear_congruential_generator(seed);
