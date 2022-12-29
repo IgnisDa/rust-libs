@@ -4,6 +4,17 @@ pub static SVG_START: &str = "
 pub static SVG_END: &str = "</svg>";
 
 pub mod male {
+    pub static MOUTH_COLORS: [&str; 3] = ["#eec1ad", "#dbac98", "#d29985"];
+
+    pub static CLOTHES_COLORS: [&str; 13] = [
+        "#5bc0de", "#5cb85c", "#428bca", "#03396c", "#005b96", "#6497b1", "#1b85b8", "#5a5255",
+        "#559e83", "#ae5a41", "#c3cb71", "#666547", "#ffe28a",
+    ];
+
+    pub static HAT_COLORS: [&str; 6] = [
+        "#18293b", "#2e1e05", "#989789", "#3d6ba7", "#517459", "#a62116",
+    ];
+
     pub static HEAD: &str = "<path d='M8 15v1H4v1H3v3h14v-3h-1v-1h-4v-1h3v-1h1v-1h1v-3h1V7h-1V4h-1V3h-1V2H5v1H4v1H3v3H2v3h1v3h1v1h1v1h3z' fill='${skinColor}'/><path d='M5 15v-1H4v-1H3v-3H2V7h1V4h1V3h1V2h10v1h1v1h1v3h1v3h-1v3h-1v1h-1v1H5z' fill='#FFF' fill-opacity='.1'/>";
 
     pub static MUSTACHE: [&str; 4] = [
@@ -64,9 +75,9 @@ pub mod male {
 ";
         pub static HAPPY: &str = "
 <path d='M7 12v1h1v1h4v-1H8v-1H7z' fill='${mouthColor}'/>
-			<path d='M10 12v1H9v1h2v-2h-1z' fill='${moutholor}'/>
-			<path d='M8 13v1h4v-1h1v-1h-1v1H8z' fill='${mouthColor'/>
-			<path d='M8 12v2h4v-2H8z' fill='#FFF'/>
+<path d='M10 12v1H9v1h2v-2h-1z' fill='${mouthColor}'/>
+<path d='M8 13v1h4v-1h1v-1h-1v1H8z' fill='${mouthColor'/>
+<path d='M8 12v2h4v-2H8z' fill='#FFF'/>
 ";
 
         pub static SURPRISED: &str = "
@@ -121,4 +132,20 @@ pub static HAT: [&str; 12] = [
     "<path d='M4 0v3H2v1h16V3h-2V0H4z' fill='${hatColor}'/><path d='M15 3V0h-1v3h1zm-2-3v2h-1V0h1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
     "<path d='M2 2v2h16V2h-1V1h-1V0H4v1H3v1H2z' fill='${hatColor}'/><path d='M15 0v4h-1V0h1zm-2 0v4h-1V0h1z' fill-rule='evenodd' fill='#FFF' fill-opacity='.2'/>",
     "<path d='M5 2H4v2h14V3h-2V2h-1V1h-1V0H6v1H5v1z' fill='${hatColor}'/><path d='M14 2h-3v1h3V2z' fill='#FFF' fill-opacity='.2'/>"
+];
+
+pub static SKIN_COLORS: [&str; 8] = [
+    "#FFDBAC", "#F5CFA0", "#EAC393", "#E0B687", "#CB9E6E", "#B68655", "#A26D3D", "#8D5524",
+];
+
+pub static HAIR_COLORS: [&str; 17] = [
+    "#090806", "#2c222b", "#71635a", "#b7a69e", "#b89778", "#a56b46", "#b55239", "#8d4a43",
+    "#91553d", "#533d32", "#3b3024", "#554838", "#4e433f", "#504444", "#6a4e42", "#a7856a",
+    "#977961",
+];
+
+pub static EYE_COLORS: [&str; 5] = ["#76778b", "#697b94", "#647b90", "#5b7c8b", "#588387"];
+
+pub static GLASSES_COLORS: [&str; 8] = [
+    "#5f705c", "#43677d", "#5e172d", "#ffb67a", "#a04b5d", "#191919", "#323232", "#4b4b4b",
 ];

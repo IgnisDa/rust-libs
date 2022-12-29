@@ -2,6 +2,7 @@ use itoa::Buffer;
 
 mod components;
 
+#[derive(Debug)]
 struct Lcg {
     seed: u64,
 }
@@ -56,6 +57,7 @@ struct Rgb {
     a: u8,
 }
 
+#[derive(Debug)]
 struct Hsv {
     h: f64,
     s: f64,
@@ -198,57 +200,41 @@ impl Hsv {
     }
 }
 
+#[derive(Debug)]
 pub enum Mood {
     Sad,
     Happy,
     Surprised,
 }
 
-pub fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
-    let mut mood = mood;
+pub fn random_mood() -> Mood {
+    let mut g = linear_congruential_generator(0);
+    let mood_str = g.pick_one(&["sad", "happy", "surprised"]);
+    match mood_str.as_str() {
+        "sad" => Mood::Sad,
+        "happy" => Mood::Happy,
+        "surprised" => Mood::Surprised,
+        _ => Mood::Happy,
+    }
+}
 
+pub fn male_avatar(seed: u64, mood: Mood) -> String {
     let mut g = linear_congruential_generator(seed);
-    let skin_color = to_rgb(&g.pick_one(&[
-        "#FFDBAC", "#F5CFA0", "#EAC393", "#E0B687", "#CB9E6E", "#B68655", "#A26D3D", "#8D5524",
-    ]));
-    let hair_color = to_rgb(&g.pick_one(&[
-        "#090806", "#2c222b", "#71635a", "#b7a69e", "#b89778", "#a56b46", "#b55239", "#8d4a43",
-        "#91553d", "#533d32", "#3b3024", "#554838", "#4e433f", "#504444", "#6a4e42", "#a7856a",
-        "#977961",
-    ]))
-    .brighter_or_darker_than(&skin_color, 17.0);
-    let eyes_color = to_rgb(&g.pick_one(&["#76778b", "#697b94", "#647b90", "#5b7c8b", "#588387"]));
+    let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
+    let hair_color =
+        to_rgb(&g.pick_one(&components::HAIR_COLORS)).brighter_or_darker_than(&skin_color, 17.0);
+    let eyes_color = to_rgb(&g.pick_one(&components::EYE_COLORS));
     let eyebrows_color = hair_color
         .darker_than(&skin_color, 7.0)
         .darker_than(&hair_color, 10.0);
     let mustache_color = hair_color
         .darker_than(&skin_color, 7.0)
         .with_alpha(g.pick_one_float(&[1.0, 0.75, 0.5]));
-    let mouth_color = to_rgb(&g.pick_one(&["#eec1ad", "#dbac98", "#d29985"]))
+    let mouth_color = to_rgb(&g.pick_one(&components::male::MOUTH_COLORS))
         .brighter_or_darker_than(&skin_color, 10.0);
-    let glasses_color = to_rgb(&g.pick_one(&[
-        "#5f705c", "#43677d", "#5e172d", "#ffb67a", "#a04b5d", "#191919", "#323232", "#4b4b4b",
-    ]));
-    let clothes_color = to_rgb(&g.pick_one(&[
-        "#5bc0de", "#5cb85c", "#428bca", "#03396c", "#005b96", "#6497b1", "#1b85b8", "#5a5255",
-        "#559e83", "#ae5a41", "#c3cb71", "#666547", "#ffe28a",
-    ]));
-    let hat_color = to_rgb(&g.pick_one(&[
-        "#18293b", "#2e1e05", "#989789", "#3d6ba7", "#517459", "#a62116",
-    ]));
-
-    if mood.is_none() {
-        // get random mood
-        let mood_str = g.pick_one(&["sad", "happy", "surprised"]);
-        mood = Some(match mood_str.as_str() {
-            "sad" => Mood::Sad,
-            "happy" => Mood::Happy,
-            "surprised" => Mood::Surprised,
-            _ => Mood::Happy,
-        });
-    }
-
-    let mood = mood.unwrap();
+    let glasses_color = to_rgb(&g.pick_one(&components::GLASSES_COLORS));
+    let clothes_color = to_rgb(&g.pick_one(&components::male::CLOTHES_COLORS));
+    let hat_color = to_rgb(&g.pick_one(&components::male::HAT_COLORS));
 
     let mouth = match mood {
         Mood::Sad => components::male::mouths::SAD,
@@ -306,18 +292,18 @@ mod tests {
 
     #[test]
     fn male_being_generated() {
-        male_avatar(100000, None);
+        male_avatar(100000, Mood::Happy);
     }
 
     #[test]
     fn male_being_generated_with_input_seed() {
         let seed = generate_seed("test-male");
-        male_avatar(seed, None);
+        male_avatar(seed, Mood::Sad);
     }
 
     #[test]
     fn male_being_generated_with_input_seed_and_mood() {
         let seed = generate_seed("test-male");
-        male_avatar(seed, Some(Mood::Sad));
+        male_avatar(seed, Mood::Sad);
     }
 }
