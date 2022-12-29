@@ -9,7 +9,10 @@ struct Lcg {
 impl Lcg {
     fn random(&mut self) -> u32 {
         /* Linear Congruent Generator, posix/glibc [de]rand48 setting, bits [47..0] are output bits */
-        self.seed = (252 * self.seed + 11) % 2656;
+        self.seed = u64::wrapping_div(
+            u64::wrapping_mul(25214903917, self.seed + 11),
+            281474976710656,
+        );
         self.seed as u32
     }
 
@@ -59,7 +62,7 @@ struct Hsv {
     v: f64,
 }
 
-pub fn generate_seed(seed_string: String) -> u64 {
+pub fn generate_seed(seed_string: &str) -> u64 {
     let mut seed = 0;
     for c in seed_string.as_bytes() {
         seed = u64::rotate_left(seed, 8);
@@ -201,7 +204,7 @@ pub enum Mood {
     Surprised,
 }
 
-pub fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
+fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
     let mut mood = mood;
 
     let mut g = linear_congruential_generator(seed);
@@ -264,11 +267,11 @@ pub fn male_avatar(seed: u64, mood: Option<Mood>) -> String {
         &g.pick_one(&parts::EYES),
         &g.pick_one(&parts::EYEBROWS),
         &g.pick_a_or_b(0.5, _mustache, ""),
+        mouth,
         &g.pick_a_or_b(0.25, _glasses, ""),
         &g.pick_one(&parts::male::CLOTHES),
         &g.pick_a_or_b(0.95, _hair, ""),
         &g.pick_a_or_b(0.05, _hat, ""),
-        mouth,
         parts::SVG_END,
     ]
     .join("");
@@ -297,14 +300,24 @@ mod tests {
     #[test]
     fn rotate_left() {
         let test_seed = "test-string";
-        let seed = generate_seed(test_seed.to_string());
+        let seed = generate_seed(test_seed);
         assert_eq!(seed, 8371474226319526676);
     }
 
     #[test]
-    fn test() {
-        let a = male_avatar(100000, None);
-        println!("{a}");
-        panic!("oh no!");
+    fn male_being_generated() {
+        male_avatar(100000, None);
+    }
+
+    #[test]
+    fn male_being_generated_with_input_seed() {
+        let seed = generate_seed("test-male");
+        male_avatar(seed, None);
+    }
+
+    #[test]
+    fn male_being_generated_with_input_seed_and_mood() {
+        let seed = generate_seed("test-male");
+        male_avatar(seed, Some(Mood::Sad));
     }
 }
