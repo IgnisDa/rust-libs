@@ -170,3 +170,14 @@ pub struct Filters {
     #[arg(long, default_value_t = false)]
     pub ipv6: bool,
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn verify_cli() {
+        use clap::CommandFactory;
+        Cli::command().debug_assert()
+    }
+}
