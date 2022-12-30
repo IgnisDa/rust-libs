@@ -31,11 +31,11 @@ pub enum SortTypes {
 )]
 pub struct Cli {
     #[command(flatten)]
-    run: RunOptions,
+    pub run: RunOptions,
 
     /// Display a table of the distribution of servers by country.
     #[arg(long)]
-    list_countries: bool,
+    pub list_countries: bool,
 }
 
 #[derive(Debug, Args)]
