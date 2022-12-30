@@ -1,4 +1,4 @@
-use clap::{value_parser, ArgAction, Parser, ValueEnum};
+use clap::{value_parser, ArgAction, Args, Parser, ValueEnum};
 
 pub const URL: &str = "https://archlinux.org/mirrors/status/json/";
 pub const DEFAULT_CONNECTION_TIMEOUT: u16 = 5;
@@ -29,8 +29,17 @@ pub enum SortTypes {
     disable_help_subcommand = true,
     after_long_help = "Retrieve and filter a list of the latest Arch Linux mirrors."
 )]
-
 pub struct Cli {
+    #[command(flatten)]
+    run: RunOptions,
+
+    /// Display a table of the distribution of servers by country.
+    #[arg(long)]
+    list_countries: bool,
+}
+
+#[derive(Debug, Args)]
+pub struct RunOptions {
     /// The number of seconds to wait before a connection times out.
     #[arg(long, default_value_t = DEFAULT_CONNECTION_TIMEOUT, value_name = "n")]
     pub connection_timeout: u16,
