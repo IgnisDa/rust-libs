@@ -1,4 +1,5 @@
 use clap::{value_parser, ArgAction, Args, Parser, ValueEnum};
+use clap_verbosity_flag::Verbosity;
 
 pub const URL: &str = "https://archlinux.org/mirrors/status/json/";
 pub const DEFAULT_CONNECTION_TIMEOUT: u16 = 5;
@@ -30,12 +31,16 @@ pub enum SortTypes {
     after_long_help = "Retrieve and filter a list of the latest Arch Linux mirrors."
 )]
 pub struct Cli {
-    #[command(flatten)]
-    pub run: RunOptions,
-
     /// Display a table of the distribution of servers by country.
     #[arg(long)]
     pub list_countries: bool,
+
+    /// Print extra information to STDERR. Only works with some options.
+    #[clap(flatten)]
+    pub verbose: Verbosity,
+
+    #[command(flatten)]
+    pub run: RunOptions,
 }
 
 #[derive(Debug, Args)]
@@ -73,10 +78,6 @@ pub struct RunOptions {
     /// option.
     #[arg(long, default_value_t = 0)]
     pub threads: u16,
-
-    /// Print extra information to STDERR. Only works with some options.
-    #[arg(long, default_value_t = false)]
-    pub verbose: bool,
 
     /// Print mirror information instead of a mirror list. Filter options apply.
     #[arg(long, default_value_t = false)]
@@ -181,3 +182,12 @@ mod test {
         Cli::command().debug_assert()
     }
 }
+
+// #[derive(Parser, Debug)]
+// pub enum CliMain {
+//     // #[command(flatten)]
+//     Run(RunOptions),
+//     /// Display a table of the distribution of servers by country.
+//     #[command(long_flag = "list-countries")]
+//     ListCountries,
+// }

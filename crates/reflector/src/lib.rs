@@ -1,6 +1,7 @@
 mod cli;
 
 pub fn run(options: &Cli) {
+    dbg!(options);
     if options.list_countries {
         list_countries();
     }
