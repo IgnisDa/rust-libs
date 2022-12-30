@@ -3,6 +3,7 @@ members = [
     "crates/avatars",
     "crates/avatars_cli",
     "crates/connection-string-parser",
+    "crates/reflector",
 ]
 resolver = "2"
 
