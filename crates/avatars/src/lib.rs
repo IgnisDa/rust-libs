@@ -207,6 +207,13 @@ pub enum Mood {
     Surprised,
 }
 
+#[derive(Debug)]
+pub enum Gender {
+    Male,
+    Female,
+}
+
+/// Generate a male avatar from a given seed and mood.
 pub fn male_avatar(seed: u64, mood: Mood) -> String {
     let mut g = linear_congruential_generator(seed);
     let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
@@ -268,6 +275,7 @@ pub fn male_avatar(seed: u64, mood: Mood) -> String {
     svg.trim().to_string()
 }
 
+/// Generate a male avatar from a given seed and mood.
 pub fn female_avatar(seed: u64, mood: Mood) -> String {
     let mut g = linear_congruential_generator(seed);
     let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
@@ -335,12 +343,6 @@ mod tests {
 
     #[test]
     fn generated_with_input_seed() {
-        let seed = generate_seed("test-male");
-        male_avatar(seed, Mood::Sad);
-    }
-
-    #[test]
-    fn generated_with_input_seed_and_mood() {
         let seed = generate_seed("test-male");
         male_avatar(seed, Mood::Sad);
     }
