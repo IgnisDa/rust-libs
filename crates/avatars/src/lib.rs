@@ -200,6 +200,7 @@ impl Hsv {
     }
 }
 
+#[cfg_attr(feature = "strum", derive(EnumString, Display))]
 #[derive(Debug, Clone, Copy)]
 pub enum Mood {
     Sad,
@@ -207,6 +208,7 @@ pub enum Mood {
     Surprised,
 }
 
+#[cfg_attr(feature = "strum", derive(EnumString, Display))]
 #[derive(Debug, Clone, Copy)]
 pub enum Gender {
     Male,
