@@ -12,8 +12,8 @@ pub fn run_command(seed_string: String, mood: Mood, gender: Gender) -> Result<St
         Mood::Surprised => AvatarMood::Surprised,
     };
     Ok(match gender {
-        Gender::Female => female_avatar(seed, mood),
-        Gender::Male => male_avatar(seed, mood),
+        Gender::Female => female_avatar(seed, &mood),
+        Gender::Male => male_avatar(seed, &mood),
     })
 }
 
