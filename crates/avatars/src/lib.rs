@@ -1,5 +1,8 @@
 use itoa::Buffer;
 
+#[cfg(feature = "strum")]
+use strum::{Display, EnumString};
+
 pub mod components;
 
 #[derive(Debug)]
