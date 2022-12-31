@@ -29,8 +29,7 @@ dependencies = [
 [[package]]
 name = "arch-mirrors"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b73fcbaae70f0ea05743ed5a2b7177908faf56170f34eaea23ae1ef544dee4fa"
+source = "git+https://github.com/IgnisDa/arch-mirrors?rev=16d24271#16d24271d748ba3413b2db073f28965f3fcd5e97"
 dependencies = [
  "chrono",
  "quick-error",
@@ -47,7 +46,7 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
 name = "avatars"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "itoa",
 ]

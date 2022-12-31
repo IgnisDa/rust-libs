@@ -9,8 +9,13 @@ license = "MIT"
 readme = "README.md"
 
 [dependencies]
+#  TODO: Change to version after https://github.com/ALinuxPerson/arch-mirrors/issues/1 is resolved
+arch-mirrors = { git = "https://github.com/IgnisDa/arch-mirrors", rev = "16d24271" }
 clap = { workspace = true }
 clap-verbosity-flag = "2.0.0"
 color-eyre = { workspace = true }
+comfy-table = "6.1.3"
 reqwest = "0.11.13"
+serde = { version = "1.0.152", features = ["derive"] }
+serde_json = "1.0.91"
 tokio = { version = "1.23.0", features = ["full"] }

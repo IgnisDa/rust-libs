@@ -9,7 +9,7 @@ license = "MIT"
 readme = "README.md"
 
 [dependencies]
-avatars = { version = "0.1.4", path = "../avatars" }
+avatars = { version = "0.1.5", path = "../avatars" }
 clap = { workspace = true }
 color-eyre = { workspace = true }
 
