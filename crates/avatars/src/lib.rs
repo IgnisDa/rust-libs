@@ -1,8 +1,5 @@
 use itoa::Buffer;
 
-#[cfg(feature = "strum")]
-use strum::{Display, EnumString};
-
 pub mod components;
 
 #[derive(Debug)]
@@ -203,7 +200,7 @@ impl Hsv {
     }
 }
 
-#[cfg_attr(feature = "strum", derive(EnumString, Display))]
+#[cfg_attr(feature = "strum", derive(strum::EnumString, strum::Display))]
 #[derive(Debug, Clone, Copy)]
 pub enum Mood {
     Sad,
@@ -211,7 +208,7 @@ pub enum Mood {
     Surprised,
 }
 
-#[cfg_attr(feature = "strum", derive(EnumString, Display))]
+#[cfg_attr(feature = "strum", derive(strum::EnumString, strum::Display))]
 #[derive(Debug, Clone, Copy)]
 pub enum Gender {
     Male,
