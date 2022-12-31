@@ -200,21 +200,21 @@ impl Hsv {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum Mood {
     Sad,
     Happy,
     Surprised,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum Gender {
     Male,
     Female,
 }
 
 /// Generate a male avatar from a given seed and mood.
-pub fn male_avatar(seed: u64, mood: Mood) -> String {
+pub fn male_avatar(seed: u64, mood: &Mood) -> String {
     let mut g = linear_congruential_generator(seed);
     let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
     let hair_color =
@@ -276,7 +276,7 @@ pub fn male_avatar(seed: u64, mood: Mood) -> String {
 }
 
 /// Generate a male avatar from a given seed and mood.
-pub fn female_avatar(seed: u64, mood: Mood) -> String {
+pub fn female_avatar(seed: u64, mood: &Mood) -> String {
     let mut g = linear_congruential_generator(seed);
     let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
     let hair_color =
@@ -344,34 +344,34 @@ mod tests {
     #[test]
     fn generated_with_input_seed() {
         let seed = generate_seed("test-male");
-        male_avatar(seed, Mood::Sad);
+        male_avatar(seed, &Mood::Sad);
     }
 
     /* MALE tests */
 
     #[test]
     fn male_being_generated() {
-        male_avatar(100000, Mood::Happy);
+        male_avatar(100000, &Mood::Happy);
     }
 
     #[test]
     fn male_output_trimmed() {
         let seed = generate_seed("test-male");
-        let output = male_avatar(seed, Mood::Sad);
+        let output = male_avatar(seed, &Mood::Sad);
         assert!(!output.starts_with('\n'));
     }
 
     #[test]
     fn male_output_starts_with_svg() {
         let seed = generate_seed("test-male");
-        let output = male_avatar(seed, Mood::Sad);
+        let output = male_avatar(seed, &Mood::Sad);
         assert!(output.starts_with("<svg"));
     }
 
     #[test]
     fn male_output_ends_with_svg() {
         let seed = generate_seed("test-male");
-        let output = male_avatar(seed, Mood::Sad);
+        let output = male_avatar(seed, &Mood::Sad);
         assert!(output.ends_with("</svg>"));
     }
 
@@ -379,27 +379,27 @@ mod tests {
 
     #[test]
     fn female_being_generated() {
-        female_avatar(100000, Mood::Happy);
+        female_avatar(100000, &Mood::Happy);
     }
 
     #[test]
     fn female_output_trimmed() {
         let seed = generate_seed("test-male");
-        let output = female_avatar(seed, Mood::Sad);
+        let output = female_avatar(seed, &Mood::Sad);
         assert!(!output.starts_with('\n'));
     }
 
     #[test]
     fn female_output_starts_with_svg() {
         let seed = generate_seed("test-male");
-        let output = female_avatar(seed, Mood::Sad);
+        let output = female_avatar(seed, &Mood::Sad);
         assert!(output.starts_with("<svg"));
     }
 
     #[test]
     fn female_output_ends_with_svg() {
         let seed = generate_seed("test-female");
-        let output = female_avatar(seed, Mood::Sad);
+        let output = female_avatar(seed, &Mood::Sad);
         assert!(output.ends_with("</svg>"));
     }
 }
