@@ -2,6 +2,14 @@
 
 A CLI to generate avatars using the [Avatars](https://crates.io/crates/avatars) crate.
 
+## Example
+
+Gif of a random avatar being generated every 0.5 seconds:
+
+<p align="center">
+  <img width="300" src="./assets/example.gif">
+</p>
+
 ## Installation
 
 ### Using [`eget`](https://github.com/zyedidia/eget)
@@ -18,9 +26,3 @@ The binaries can be downloaded from
 ## Usage
 
 Please run `avatars_cli --help` for usage.
-
-## Example
-
-On running `avatars_cli --mood happy --gender female 1234`:
-
-![Example](./assets/example.svg)
