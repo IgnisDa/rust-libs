@@ -1,7 +1,7 @@
 [package]
 name = "avatars"
 description = "A library to generate SVG avatars from a seed string"
-version = "0.1.8"
+version = "0.1.9"
 edition = "2021"
 authors = ["IgnisDa <ignisda2001@gmail.com>"]
 repository = "https://github.com/IgnisDa/rust-libs"

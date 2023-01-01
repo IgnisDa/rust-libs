@@ -1,5 +1,20 @@
+//! This is a Rust port of the [Codeberg avatars](https://codeberg.org/Codeberg/avatars).
+//! It can be used to generate avatars based on a seed string. The seed string is used to
+//! generate a `u64` seed which is then used to generate the avatar.
+//! # Example
+//!
+//! ```rust
+//! use avatars::{generate_seed, female_avatar, male_avatar, Mood};
+//!
+//! let seed = generate_seed("test");
+//! let f_avatar = female_avatar(seed, &Mood::Sad);
+//! let m_avatar = male_avatar(seed, &Mood::Happy);
+//! ```
+
 use itoa::Buffer;
 
+/// This module contains the various components that are used to generate the avatar. Most
+/// of these are SVGs `str`.
 pub mod components;
 
 #[derive(Debug)]
@@ -64,6 +79,8 @@ struct Hsv {
     v: f64,
 }
 
+/// Generate a random seed from a string. This seed can be used by the various functions to
+/// generate an avatar.
 pub fn generate_seed(seed_string: &str) -> u64 {
     let mut seed = 0;
     for c in seed_string.as_bytes() {
@@ -200,6 +217,7 @@ impl Hsv {
     }
 }
 
+/// The different moods that can be used to generate an avatar.
 #[cfg_attr(feature = "strum", derive(strum::EnumString, strum::Display))]
 #[derive(Debug, Clone, Copy)]
 pub enum Mood {
@@ -208,6 +226,7 @@ pub enum Mood {
     Surprised,
 }
 
+/// The different genders that can be used to generate an avatar.
 #[cfg_attr(feature = "strum", derive(strum::EnumString, strum::Display))]
 #[derive(Debug, Clone, Copy)]
 pub enum Gender {
@@ -277,7 +296,7 @@ pub fn male_avatar(seed: u64, mood: &Mood) -> String {
     svg.trim().to_string()
 }
 
-/// Generate a male avatar from a given seed and mood.
+/// Generate a female avatar from a given seed and mood.
 pub fn female_avatar(seed: u64, mood: &Mood) -> String {
     let mut g = linear_congruential_generator(seed);
     let skin_color = to_rgb(&g.pick_one(&components::SKIN_COLORS));
