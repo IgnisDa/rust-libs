@@ -31,6 +31,11 @@ pub enum SortTypes {
     after_long_help = "Retrieve and filter a list of the latest Arch Linux mirrors."
 )]
 pub struct Cli {
+    /// The URL from which to retrieve the mirror data in JSON format. If different from
+    /// the default, it must follow the same format.
+    #[arg(long, default_value = URL)]
+    pub url: String,
+
     /// Display a table of the distribution of servers by country.
     #[arg(long)]
     pub list_countries: bool,
@@ -57,11 +62,6 @@ pub struct RunOptions {
     /// Status API.
     #[arg(long, default_value_t = DEFAULT_CACHE_TIMEOUT, value_name = "n")]
     pub cache_timeout: u16,
-
-    /// The URL from which to retrieve the mirror data in JSON format. If different from
-    /// the default, it must follow the same format.
-    #[arg(long, default_value = URL)]
-    pub url: String,
 
     /// Save the mirrorlist to the given file path.
     #[arg(long, value_name = "filepath")]
