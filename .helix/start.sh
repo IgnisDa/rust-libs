@@ -31,5 +31,4 @@ ssh -t -i tmp/temp-ssh-key \
     -o UserKnownHostsFile=/dev/null \
     -o GlobalKnownHostsFile=/dev/null \
     -p 2222 archlinux@localhost \
-    exec bash # -c helix /workspaces/rust-libs
-
+    helix /workspaces/rust-libs
