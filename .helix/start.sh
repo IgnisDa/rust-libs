@@ -22,7 +22,6 @@ devcontainer up $remove_flag \
 
 # Install vim (if needed) and add pub key to SSH allow list
 devcontainer exec --workspace-folder . /.helix/init-helix.sh
-devcontainer exec --workspace-folder . sudo ssh-keygen -A
 devcontainer exec --workspace-folder . sudo /usr/local/share/ssh-init.sh
 
 # Connect
