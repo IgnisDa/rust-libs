@@ -26,7 +26,7 @@ devcontainer exec --workspace-folder . sudo ssh-keygen -A
 devcontainer exec --workspace-folder . sudo /usr/local/share/ssh-init.sh
 
 # Connect
-ssh -t -i tmp/temp-ssh-key \
+ssh -t -i $PWD/.helix/tmp/temp-ssh-key \
     -o NoHostAuthenticationForLocalhost=yes \
     -o UserKnownHostsFile=/dev/null \
     -o GlobalKnownHostsFile=/dev/null \
