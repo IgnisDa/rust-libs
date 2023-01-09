@@ -30,4 +30,4 @@ ssh -t -i $PWD/.helix/tmp/temp-ssh-key \
     -o UserKnownHostsFile=/dev/null \
     -o GlobalKnownHostsFile=/dev/null \
     -p 2222 archlinux@localhost \
-    helix /workspaces/rust-libs
+    "cd /workspaces/rust-libs; fish --login"
