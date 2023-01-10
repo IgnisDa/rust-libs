@@ -1,5 +1,5 @@
 [package]
-name = "arch-mirror"
+name = "arch-mirrors-rs"
 description = "Parse the Arch Linux mirror status."
 version = "0.1.0"
 edition = "2021"

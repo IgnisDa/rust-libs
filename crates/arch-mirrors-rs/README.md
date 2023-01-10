@@ -1,10 +1,10 @@
-# Arch Mirror
+# Arch Mirrors
 
 Parse the Arch Linux mirror status
 
 ## Description
 
-The `arch-mirror` crate allows you to parse the JSON different mirror status 
+The `arch-mirrors-rs` crate allows you to parse the JSON different mirror status 
 sources (like https://www.archlinux.org/mirrors/status/json) into a typed, 
 rusty form. 
 
@@ -15,7 +15,7 @@ For the examples see [examples](examples).
 ## Installation
 
 ```bash
-$ cargo add arch-mirror
+$ cargo add arch-mirrors-rs
 ```
 
 # Acknowledgements

@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "crates/arch-mirror",
+    "crates/arch-mirrors-rs",
     "crates/avatars",
     "crates/avatars_cli",
     "crates/connection-string-parser",

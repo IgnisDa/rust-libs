@@ -6,7 +6,7 @@ const ERROR: i32 = 1;
 #[tokio::main]
 async fn main() {
     async fn inner() -> i32 {
-        let status = match arch_mirror::get_status().await {
+        let status = match arch_mirrors_rs::get_status().await {
             Ok(status) => status,
             Err(error) => {
                 eprintln!("error: {}", error);
