@@ -12,6 +12,8 @@ Set of libraries that I maintain on [crates.io](https://crates.io/users/ignisda)
   crate.
 - [connection-string-parser](crates/connection-string-parser): A library to parse
   connection strings.
+- [arch-reflector](crates/arch-reflector): A rust implementation of the 
+  [reflector](https://wiki.archlinux.org/title/reflector) utility.
 
 ## License
 
