@@ -3,9 +3,7 @@ mod mirrors;
 
 pub use cli::Cli;
 use comfy_table::{modifiers::UTF8_ROUND_CORNERS, presets::UTF8_FULL, Cell, CellAlignment, Table};
-use mirrors::{count_countries, get_mirror_status};
-
-use crate::mirrors::get_cache_file;
+use mirrors::{count_countries, get_cache_file, get_mirror_status};
 
 pub async fn run(options: &Cli) {
     if options.list_countries {

@@ -1,5 +1,5 @@
 use anyhow::Result;
-use arch_mirrors::{Country, Status, Url};
+use arch_mirrors_rs::{Country, Status, Url};
 use directories::BaseDirs;
 use hashbag::HashBag;
 use std::{
