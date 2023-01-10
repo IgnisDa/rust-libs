@@ -1,7 +1,20 @@
 use anyhow::Result;
 use arch_mirrors::{Country, Status, Url};
+use directories::BaseDirs;
 use hashbag::HashBag;
-use std::{fs::File, path::Path, time::SystemTime};
+use std::{
+    fs::{self, File},
+    path::{Path, PathBuf},
+    time::SystemTime,
+};
+
+pub fn get_cache_file(name: Option<&str>) -> PathBuf {
+    let name = name.unwrap_or("mirrorstatus.json");
+    let base_dirs = BaseDirs::new().expect("is not expected to fail");
+    let cache_dir = base_dirs.cache_dir();
+    fs::create_dir_all(cache_dir).expect("creating directory should not fail");
+    cache_dir.join(name)
+}
 
 /// Retrieve the mirror status JSON object. The downloaded data will be cached locally and
 /// re-used within the cache timeout period. Returns the object and the local cache's
@@ -28,7 +41,10 @@ pub async fn get_mirror_status(
         let loaded = serde_json::from_reader(File::open(cache_file_path).unwrap())?;
         Ok(loaded)
     } else {
-        Ok(Status::get_from_url(url).await?)
+        let loaded = Status::get_from_url(url).await?;
+        let to_write = serde_json::to_string_pretty(&loaded).unwrap();
+        fs::write(cache_file_path, to_write).expect("Writing to file should not fail");
+        Ok(loaded)
     }
 }
 
