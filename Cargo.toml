@@ -1,10 +1,10 @@
 [workspace]
 members = [
+    "crates/arch-reflector",
     "crates/arch-mirrors-rs",
     "crates/avatars",
     "crates/avatars_cli",
     "crates/connection-string-parser",
-    "crates/reflector",
 ]
 resolver = "2"
 

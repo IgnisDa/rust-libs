@@ -45,6 +45,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "arch-reflector"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arch-mirrors-rs",
+ "clap",
+ "clap-verbosity-flag",
+ "color-eyre",
+ "comfy-table",
+ "directories",
+ "hashbag",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1019,24 +1037,6 @@ dependencies = [
  "getrandom",
  "redox_syscall",
  "thiserror",
-]
-
-[[package]]
-name = "reflector"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "arch-mirrors-rs",
- "clap",
- "clap-verbosity-flag",
- "color-eyre",
- "comfy-table",
- "directories",
- "hashbag",
- "reqwest",
- "serde",
- "serde_json",
- "tokio",
 ]
 
 [[package]]

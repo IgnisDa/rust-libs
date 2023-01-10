@@ -12,6 +12,7 @@ on:
         type: choice
         description: Which project to build and publish
         options:
+          - arch-reflector
           - connection-string-parser
           - avatars_cli
 
