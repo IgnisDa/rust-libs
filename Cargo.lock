@@ -35,7 +35,7 @@ checksum = "2cb2f989d18dd141ab8ae82f64d1a8cdd37e0840f73a406896cf5e99502fab61"
 [[package]]
 name = "arch-mirrors"
 version = "0.1.1"
-source = "git+https://github.com/IgnisDa/arch-mirrors?branch=master#613f03a60b9c66622eea356e95db93261dfe524d"
+source = "git+https://github.com/IgnisDa/arch-mirrors?branch=master#883441a64b0650f5c4b7cfb2cc0aa56c8dace9ca"
 dependencies = [
  "chrono",
  "quick-error",

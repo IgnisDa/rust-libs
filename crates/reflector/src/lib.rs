@@ -1,13 +1,8 @@
+use comfy_table::{modifiers::UTF8_ROUND_CORNERS, presets::UTF8_FULL, Cell, CellAlignment, Table};
 use mirrors::{count_countries, get_mirror_status};
 use std::path::Path;
 mod cli;
 mod mirrors;
-
-struct CountryDetail {
-    country: String,
-    code: String,
-    count: u8,
-}
 
 pub async fn run(options: &Cli) {
     if options.list_countries {
@@ -20,9 +15,24 @@ pub async fn list_countries(url: &str) {
         .await
         .unwrap();
     let counts = count_countries(&status.urls).await;
+    let mut sorted = vec![];
     for (country, count) in counts {
-        println!("{} has {} mirrors", country.kind.to_string(), count);
+        sorted.push((country, count));
     }
+    sorted.sort_by(|c1, c2| c1.0.code.cmp(&c2.0.code));
+    let mut table = Table::new();
+    table
+        .load_preset(UTF8_FULL)
+        .apply_modifier(UTF8_ROUND_CORNERS);
+    table.set_header(vec!["Country", "Code", "Count"]);
+    for (country, count) in sorted {
+        table.add_row(vec![
+            Cell::new(country.kind.to_string()),
+            Cell::new(country.code.to_string()),
+            Cell::new(count.to_string()).set_alignment(CellAlignment::Right),
+        ]);
+    }
+    println!("{}", table);
 }
 
 pub use cli::Cli;

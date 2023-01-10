@@ -35,6 +35,9 @@ pub async fn get_mirror_status(
 pub async fn count_countries(urls: &[Url]) -> HashBag<&Country> {
     let mut counts = HashBag::new();
     for url in urls.iter() {
+        if url.country == Country::WORLDWIDE {
+            continue;
+        }
         counts.insert(&url.country);
     }
     counts
