@@ -1,3 +1,5 @@
+use mirrors::{count_countries, get_mirror_status};
+use std::path::Path;
 mod cli;
 mod mirrors;
 
@@ -7,14 +9,20 @@ struct CountryDetail {
     count: u8,
 }
 
-pub fn run(options: &Cli) {
+pub async fn run(options: &Cli) {
     if options.list_countries {
-        list_countries(&options.url);
+        list_countries(&options.url).await;
     }
 }
 
-pub fn list_countries(url: &str) {
-    //
+pub async fn list_countries(url: &str) {
+    let status = get_mirror_status(10, 10, url, &Path::new(""))
+        .await
+        .unwrap();
+    let counts = count_countries(&status.urls).await;
+    for (country, count) in counts {
+        println!("{} has {} mirrors", country.kind.to_string(), count);
+    }
 }
 
 pub use cli::Cli;

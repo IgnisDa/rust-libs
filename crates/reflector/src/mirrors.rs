@@ -1,11 +1,13 @@
 use anyhow::Result;
-use arch_mirrors::Status;
+use arch_mirrors::{Country, Status, Url};
+use hashbag::HashBag;
 use std::{fs::File, path::Path, time::SystemTime};
 
 /// Retrieve the mirror status JSON object. The downloaded data will be cached locally and
 /// re-used within the cache timeout period. Returns the object and the local cache's
 /// modification time.
 pub async fn get_mirror_status(
+    // TODO: Allow using this parameter
     connection_timeout: u8,
     cache_timeout: u8,
     url: &str,
@@ -28,4 +30,12 @@ pub async fn get_mirror_status(
     } else {
         Ok(Status::get_from_url(url).await?)
     }
+}
+
+pub async fn count_countries(urls: &[Url]) -> HashBag<&Country> {
+    let mut counts = HashBag::new();
+    for url in urls.iter() {
+        counts.insert(&url.country);
+    }
+    counts
 }

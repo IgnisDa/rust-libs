@@ -468,6 +468,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "hashbag"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c759d39a226f021f488936b2d3a26b16d9a1246e931adcec5c5b057388adceb3"
+
+[[package]]
 name = "hashbrown"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -983,6 +989,7 @@ dependencies = [
  "clap-verbosity-flag",
  "color-eyre",
  "comfy-table",
+ "hashbag",
  "reqwest",
  "serde",
  "serde_json",
