@@ -21,7 +21,7 @@ pub fn get_cache_file(name: Option<&str>) -> PathBuf {
 /// modification time.
 pub async fn get_mirror_status(
     // TODO: Allow using this parameter
-    connection_timeout: u8,
+    _connection_timeout: u8,
     cache_timeout: u8,
     url: &str,
     cache_file_path: &Path,
