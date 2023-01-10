@@ -21,7 +21,7 @@ async fn main() {
 ## Generated on {}
 ##
 "#,
-            chrono::Utc::now().date()
+            chrono::Utc::now().date_naive()
         );
 
         for url in status.urls {
