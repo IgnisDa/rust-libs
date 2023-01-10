@@ -9,8 +9,9 @@ license = "MIT"
 readme = "README.md"
 
 [dependencies]
+anyhow = "1.0.68"
 #  TODO: Change to version after https://github.com/ALinuxPerson/arch-mirrors/issues/1 is resolved
-arch-mirrors = { git = "https://github.com/IgnisDa/arch-mirrors", rev = "16d24271" }
+arch-mirrors = { git = "https://github.com/IgnisDa/arch-mirrors", branch = "master" }
 clap = { workspace = true }
 clap-verbosity-flag = "2.0.0"
 color-eyre = { workspace = true }

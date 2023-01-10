@@ -1,4 +1,5 @@
-use arch_mirrors::{get_status, Status};
+use anyhow::Result;
+use arch_mirrors::Status;
 use std::{fs::File, path::Path, time::SystemTime};
 
 /// Retrieve the mirror status JSON object. The downloaded data will be cached locally and
@@ -9,7 +10,7 @@ pub async fn get_mirror_status(
     cache_timeout: u8,
     url: &str,
     cache_file_path: &Path,
-) -> Status {
+) -> Result<Status> {
     let mtime = cache_file_path
         .metadata()
         .ok()
@@ -22,8 +23,9 @@ pub async fn get_mirror_status(
         })
         .unwrap_or(true);
     if !is_invalid {
-        serde_json::from_reader(File::open(cache_file_path).unwrap()).unwrap()
+        let loaded = serde_json::from_reader(File::open(cache_file_path).unwrap())?;
+        Ok(loaded)
     } else {
-        get_status().await.unwrap()
+        Ok(Status::get_from_url(url).await?)
     }
 }

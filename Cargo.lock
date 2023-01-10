@@ -27,9 +27,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "anyhow"
+version = "1.0.68"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2cb2f989d18dd141ab8ae82f64d1a8cdd37e0840f73a406896cf5e99502fab61"
+
+[[package]]
 name = "arch-mirrors"
 version = "0.1.1"
-source = "git+https://github.com/IgnisDa/arch-mirrors?rev=16d24271#16d24271d748ba3413b2db073f28965f3fcd5e97"
+source = "git+https://github.com/IgnisDa/arch-mirrors?branch=master#613f03a60b9c66622eea356e95db93261dfe524d"
 dependencies = [
  "chrono",
  "quick-error",
@@ -971,6 +977,7 @@ dependencies = [
 name = "reflector"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "arch-mirrors",
  "clap",
  "clap-verbosity-flag",
