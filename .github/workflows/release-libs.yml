@@ -12,6 +12,7 @@ on:
         description: Which project to publish
         options:
           - avatars
+          - arch-mirror
 
 env:
   CARGO_INCREMENTAL: 0

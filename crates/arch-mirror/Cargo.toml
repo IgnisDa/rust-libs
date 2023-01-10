@@ -1,0 +1,20 @@
+[package]
+name = "arch-mirror"
+description = "Parse the Arch Linux mirror status."
+version = "0.1.0"
+edition = "2021"
+authors = ["IgnisDa <ignisda2001@gmail.com>"]
+repository = "https://github.com/IgnisDa/rust-libs"
+license = "MIT"
+readme = "README.md"
+keywords = ["arch-linux", "linux", "mirrors", "mirror", "mirrorlist"]
+
+[dependencies]
+chrono = { version = "0.4.19", features = ["serde"] }
+quick-error = "2.0.1"
+reqwest = { version = "0.11.3", features = ["json"] }
+serde = { version = "1.0.126", features = ["derive"] }
+url = { version = "2.2.2", features = ["serde"] }
+
+[dev-dependencies]
+tokio = { version = "1.6.0", features = ["macros", "rt-multi-thread"] }
