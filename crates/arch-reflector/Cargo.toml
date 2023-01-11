@@ -1,6 +1,6 @@
 [package]
 name = "arch-reflector"
-version = "0.1.4"
+version = "0.1.5"
 description = "A rust implementation of the arch linux reflector package"
 edition = "2021"
 authors = ["IgnisDa <ignisda2001@gmail.com>"]
